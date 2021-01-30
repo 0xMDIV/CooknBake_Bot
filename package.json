@@ -1,0 +1,38 @@
+{
+  "name": "cakenbake",
+  "version": "1.0.0",
+  "description": "cake n bake bot",
+  "main": "bot.js",
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "fs": "0.0.1-security",
+    "google-auth-library": "^6.1.1",
+    "googleapis": "^61.0.0",
+    "http": "0.0.1-security",
+    "install": "^0.13.0",
+    "moment": "^2.27.0",
+    "mysql": "^2.18.1",
+    "npm": "^6.14.8",
+    "request": "^2.88.2",
+    "sprintf-js": "^1.1.2",
+    "telegraf": "^3.38.0",
+    "util": "^0.12.3",
+    "xml-parse": "^0.4.0",
+    "yarn": "^1.22.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "githttps://github.com/0xMDIV/CooknBake_Bot.git"
+  },
+  "author": "0xMDIV",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/0xMDIV/CooknBake_Bot/issues"
+  },
+  "homepage": "https://github.com/0xMDIV/CooknBake_Bot#readme"
+}
+

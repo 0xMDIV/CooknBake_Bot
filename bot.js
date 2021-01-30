@@ -82,18 +82,44 @@ const bot = new telegram(config.bot_token);
 
 bot.command('add', (ctx) => {
     var link = ctx.message.text.substr(5).trim();
+    var chatId = ctx.from.id;
     if(link.length > 0) {
         try {
-            db.query('INSERT INTO recipes (link) VALUES (?)', [link], function (err, rows, fields) {
+            db.query('INSERT INTO recipes (link, userchatId) VALUES (?, ?)', [link, chatId], function (err, rows, fields) {
                 if (err) console.log(err);
             });
             ctx.reply('Added Link to Database');
             Helper.log("[INFO] Added Link " + link)
         } catch (error) {
+            ctx.reply('Link couldnt be added!');
             Helper.log("[ERROR] Link konnte nicht geaddet werden: %s", error);
         }
     }
-})
+});
+
+
+bot.command('get', (ctx) => {
+    // var search_input = ctx.message.text.substr(5).split(', ');
+    var recipes = [];
+    var chatId = ctx.from.id;
+    var sql_str = `SELECT * FROM recipes WHERE userchatId = "${chatId}"`;
+    
+    db.query(sql_str, function (err, rows, fields) {
+        if (err) {
+            Helper.log('[ERROR] Couldnt fetch data from database');
+            ctx.reply('Die Rezepte konnten nicht abgerufen werden.');
+            return;
+        };
+        if (rows.length >= 1) {
+            for (var i = 0; i < rows.length; i++) {
+                recipes.push(rows[i].link);
+            };
+            ctx.reply(recipes.join("\n\n"));
+        } else {
+            ctx.reply('Die Rezepte konnten nicht abgerufen werden.');
+        }
+    });
+});
 
 
 /**
